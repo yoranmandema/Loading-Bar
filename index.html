@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <script type="text/javascript" src="JS/jquery-3.3.1.min.js"></script>
+        
+        <style>
+            .loadingbar {
+                position: absolute;
+                left: 0; 
+                right: 0;
+                margin-left: auto; 
+                margin-right: auto;
+                width: 50%; /*Overall size*/
+                bottom: 20%; /*How far from the bottom of the screen*/
+            }
+
+            #loadingfull {
+                clip-path: inset(0px 50% 0px 0px);
+            }
+        </style>
+
+        <script> 
+
+            // Function to set the percentage
+            function setLoadingBarPercentage (percent) {
+                $("#loadingfull").css("clip-path","inset(0px " + Math.max(0, Math.min(100 - percent, 100)) + "% 0px 0px)");
+            }
+
+            // Example animation
+            var percent = 0;
+
+            $( document ).ready(function() {
+                var intervalID = window.setInterval(() => {
+                    percent++;
+                    setLoadingBarPercentage(percent);
+                }, 20);
+            });
+        </script>
+    </head>
+    <body>
+        <img src="Images/DaemonLoadingBlack.png" class="loadingbar">
+        <img src="Images/DaemonLoadingRed.png" class="loadingbar" id="loadingfull">
+    </body>
+</html>
